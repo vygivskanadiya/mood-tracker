@@ -1,0 +1,141 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #3a3042;
+    background-color: #faf7fb;
+  }
+
+  :root {
+    --lavender: #e6defa;
+    --lavender-dark: #b9a6e8;
+    --mint: #d7f5ea;
+    --mint-dark: #8fd9bb;
+    --peach: #ffe4d6;
+    --peach-dark: #ffb08f;
+    --text-main: #3a3042;
+    --text-muted: #7a7086;
+  }
+
+  header {
+    background: linear-gradient(120deg, var(--lavender), var(--mint));
+    padding: 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--lavender-dark);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--text-main);
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+  
+  main section {
+    margin-bottom: 32px;
+  }
+  
+  main section h2 {
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin-bottom: 16px;
+  }
+
+  #mood-form form {
+    background-color: var(--peach);
+    padding: 20px;
+    border-radius: 16px;
+  }
+  
+  #mood-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+  
+  #mood-form select,
+  #mood-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid var(--peach-dark);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  
+  #mood-form select:focus,
+  #mood-form textarea:focus {
+    outline: none;
+    border-color: var(--lavender-dark);
+  }
+  
+  #mood-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--mint-dark);
+    color: #1f3d31;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  #mood-form button:hover {
+    background-color: #74c9a9;
+  }
+
+  #history article {
+    background-color: var(--mint);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  
+  #history article h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.1rem;
+    color: var(--text-main);
+  }
+  
+  #history article p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+  
+  aside {
+    max-width: 720px;
+    margin: 0 auto 24px auto;
+    padding: 20px;
+    background-color: var(--lavender);
+    border-radius: 16px;
+    text-align: center;
+  }
+  
+  aside h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: var(--text-main);
+  }
+  
+  aside p {
+    margin: 4px 0;
+    color: var(--text-main);
+  }
+ 
+  footer {
+    padding: 16px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }

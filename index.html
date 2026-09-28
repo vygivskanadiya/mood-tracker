@@ -16,38 +16,38 @@
       <h2>Відмітити настрій</h2>
       <form>
         <label for="mood-select">Оберіть настрій</label>
-        <select id="mood-select" name="mood">
-          <option value="happy"> Радісний</option>
-          <option value="neutral"> Нейтральний</option>
-          <option value="sad"> Сумний</option>
+        <select id="mood-select" class="field" name="mood">
+          <option value="happy">😊 Радісний</option>
+          <option value="neutral">😐 Нейтральний</option>
+          <option value="sad">😢 Сумний</option>
         </select>
 
         <label for="mood-comment">Коментар</label>
-        <textarea id="mood-comment" name="comment" placeholder="Що вплинуло на настрій?"></textarea>
+        <textarea id="mood-comment" class="field" name="comment" placeholder="Що вплинуло на настрій?"></textarea>
 
-        <button type="submit">Зберегти запис</button>
+        <button type="submit" class="btn">Зберегти запис</button>
       </form>
     </section>
 
     <section id="history">
       <h2>Історія записів</h2>
 
-      <article>
+      <article class="card">
         <h3>09 вересня 2026</h3>
-        <p>Настрій:  Радісний. Коментар: продуктивний день.</p>
+        <p>Настрій: 😊 Радісний. Коментар: продуктивний день.</p>
       </article>
 
-      <article>
+      <article class="card">
         <h3>08 вересня 2026</h3>
-        <p>Настрій:  Нейтральний. Коментар: звичайний робочий день.</p>
+        <p>Настрій: 😐 Нейтральний. Коментар: звичайний робочий день.</p>
       </article>
     </section>
   </main>
 
-  <aside>
+  <aside class="summary">
     <h2>Коротка статистика</h2>
     <p>Записів за тиждень: 5</p>
-    <p>Переважний настрій:  Радісний</p>
+    <p>Переважний настрій: 😊 Радісний</p>
   </aside>
 
   <footer>

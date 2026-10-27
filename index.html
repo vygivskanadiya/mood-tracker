@@ -5,18 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Трекер настрою</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Шапка з назвою застосунку -->
- 
-  <!-- Форма відмітки поточного настрою -->
- 
-  <!-- Блок історії записів за датами -->
- 
-  <!-- Блок простої статистики -->
- 
-  <!-- Підвал -->
- 
-  <script src="js/app.js"></script>
+  <header>
+    <h1>Трекер настрою</h1>
+  </header>
+
+  <div class="layout">
+    <main>
+      <section id="mood-form">
+        <h2>Відмітити настрій</h2>
+        <form id="add-mood-form">
+          <label for="mood-date">Дата</label>
+          <input type="date" id="mood-date" class="field" name="date" required>
+
+          <label for="mood-level">Рівень настрою (1–5)</label>
+          <input type="number" id="mood-level" class="field" name="mood" min="1" max="5" required>
+
+          <label for="mood-note">Коментар</label>
+          <textarea id="mood-note" class="field" name="note" maxlength="200" placeholder="Що вплинуло на настрій?"></textarea>
+          <span class="char-counter" id="note-counter">Залишилось символів: 200</span>
+
+          <button type="submit" class="btn">Зберегти запис</button>
+        </form>
+      </section>
+
+      <section id="history">
+        <h2>Історія записів</h2>
+
+        <div class="cards" id="mood-history">
+          <article class="card">
+            <h3>13 вересня 2026</h3>
+            <p>Чудовий день, усе вдалося!</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <aside class="summary">
+      <h2>Коротка статистика</h2>
+      <p id="records-count">Записів за тиждень: 5</p>
+      <p id="avg-mood">Середній настрій: —</p>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Навчальний проєкт «Трекер настрою». &copy; 2026</p>
+  </footer>
 </body>
 </html>

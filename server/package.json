@@ -1,0 +1,13 @@
+{
+  "name": "mood-tracker-server",
+  "version": "1.0.0",
+  "description": "Локальний сервер трекера настрою: статичні файли й API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}

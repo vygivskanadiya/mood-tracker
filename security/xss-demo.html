@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стенд XSS — практична робота №15</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #3a3042;
+      background-color: #faf7fb;
+    }
+    .warning {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      padding: 12px 16px;
+      border-left: 4px solid #ad5d37;
+      border-radius: 8px;
+      background-color: #ffe4d6;
+      font-weight: 600;
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    textarea {
+      width: 100%;
+      min-height: 70px;
+      padding: 10px;
+      border: 1px solid #ffb08f;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 12px 0 24px;
+      border: none;
+      border-radius: 8px;
+      background-color: #8fd9bb;
+      color: #1f3d31;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .result {
+      padding: 14px;
+      margin-bottom: 16px;
+      border-left: 4px solid #b9a6e8;
+      border-radius: 16px;
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(58, 48, 66, 0.08);
+    }
+    .result h2 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+    .unsafe { border-left-color: #ad5d37; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <p class="warning">
+    Навчальний стенд практичної роботи №15. Перший блок навмисно небезпечний і
+    показує, як виконується код із рядка користувача. Стенд не входить до
+    застосунку й не працює з реальними даними.
+  </p>
+
+  <main>
+    <h1>Три способи вставити текст користувача</h1>
+
+    <label for="payload">Рядок користувача</label>
+    <textarea id="payload">&lt;img src=x onerror="alert('XSS')"&gt;</textarea>
+    <button type="button" id="render-btn">Показати всі три способи</button>
+
+    <div class="result unsafe">
+      <h2>1. <code>innerHTML</code> без екранування — небезпечно</h2>
+      <div id="out-unsafe"></div>
+    </div>
+
+    <div class="result">
+      <h2>2. <code>textContent</code> — безпечно</h2>
+      <div id="out-text"></div>
+    </div>
+
+    <div class="result">
+      <h2>3. <code>escapeHtml()</code> + <code>innerHTML</code> — безпечно, коли розмітка потрібна</h2>
+      <div id="out-escaped"></div>
+    </div>
+  </main>
+
+  <script>
+    function escapeHtml(str) {
+      const map = {
+        '&': '&amp;', '<': '&lt;', '>': '&gt;',
+        '"': '&quot;', "'": '&#39;',
+      };
+      return String(str).replace(/[&<>"']/g, ch => map[ch]);
+    }
+
+    const payloadInput = document.querySelector('#payload');
+    const outUnsafe = document.querySelector('#out-unsafe');
+    const outText = document.querySelector('#out-text');
+    const outEscaped = document.querySelector('#out-escaped');
+
+    document.querySelector('#render-btn').addEventListener('click', () => {
+      const value = payloadInput.value;
+
+      outUnsafe.innerHTML = value;
+
+      outText.textContent = value;
+
+      outEscaped.innerHTML = `<p>${escapeHtml(value)}</p>`;
+    });
+  </script>
+</body>
+</html>

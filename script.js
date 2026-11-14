@@ -149,12 +149,18 @@ function deleteItem(id) {
 }
 
 // Одноразово переносить дані з localStorage у IndexedDB; прапорець не дає повторити міграцію.
+// Практична робота №15: після міграції копія записів у localStorage більше не потрібна,
+// тому ключ видаляється — тексти нотаток не лишаються у відкритому сховищі.
 async function migrateFromLocalStorage() {
-  if (localStorage.getItem(MIGRATED_FLAG) === 'true') return;
+  if (localStorage.getItem(MIGRATED_FLAG) === 'true') {
+    localStorage.removeItem(STORAGE_KEY);
+    return;
+  }
 
   const existing = await getAllItems();
   if (existing.length > 0) {
     localStorage.setItem(MIGRATED_FLAG, 'true');
+    localStorage.removeItem(STORAGE_KEY);
     return;
   }
 
@@ -164,7 +170,8 @@ async function migrateFromLocalStorage() {
     await addItem(rest);
   }
   localStorage.setItem(MIGRATED_FLAG, 'true');
-  console.log(`Міграція з localStorage завершена: перенесено записів — ${legacy.length}`);
+  localStorage.removeItem(STORAGE_KEY);
+  console.log('Міграція з localStorage завершена:', legacy.length);
 }
 
 // ===== Практична робота №8: обробка подій, форми, валідація =====
@@ -226,7 +233,7 @@ addMoodForm.addEventListener('submit', async event => {
   const newRecord = {
     date: formatDisplayDate(isoDate),
     mood: moodValue,
-    note: noteValue || 'Без коментаря',
+    note: noteValue.slice(0, NOTE_MAX_LENGTH) || 'Без коментаря',
   };
 
   try {
